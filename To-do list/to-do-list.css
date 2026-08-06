@@ -217,3 +217,68 @@ h1{
 
     justify-content: space-around;
 }
+
+/* ============================== */
+/* Tareas */
+/* ============================== */
+
+.lista-tareas li{
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background-color: #21262d;
+
+    border: 1px solid #30363d;
+
+    border-radius: 8px;
+
+    padding: 15px;
+
+    margin-bottom: 12px;
+
+    transition: .2s;
+}
+
+.lista-tareas li:hover{
+
+    border-color: #58a6ff;
+}
+
+/* Texto */
+
+.lista-tareas span{
+
+    flex: 1;
+
+    margin-left: 15px;
+
+    font-size: 18px;
+}
+
+/* Botones */
+
+.lista-tareas button{
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+/* Tarea completada */
+
+.completada span{
+
+    text-decoration: line-through;
+
+    color: #8b949e;
+}

@@ -1,44 +1,157 @@
 // ==============================
-// Obtener elementos del HTML
+// Variables
 // ==============================
 
 const inputTarea = document.getElementById("nuevaTarea");
 const botonAgregar = document.getElementById("btnAgregar");
 const listaTareas = document.getElementById("listaTareas");
 
+// Arreglo principal
+let tareas = [];
+
 // ==============================
-// Evento del botón
+// Eventos
 // ==============================
 
+// Botón Agregar
 botonAgregar.addEventListener("click", agregarTarea);
 
+// Tecla Enter
+inputTarea.addEventListener("keydown", detectarEnter);
+
+// Cargar tareas guardadas
+cargarTareas();
+
 // ==============================
-// Función para agregar una tarea
+// Funciones
 // ==============================
 
+// Agregar una nueva tarea
 function agregarTarea() {
 
-    // Obtener el texto escrito por el usuario
-    const texto = inputTarea.value;
+    const texto = inputTarea.value.trim();
 
-    // Evitar tareas vacías
     if (texto === "") {
         alert("Debes escribir una tarea.");
         return;
     }
 
-    // Crear un nuevo elemento <li>
-    const nuevaTarea = document.createElement("li");
+    tareas.push({
+        texto: texto,
+        completada: false
+    });
 
-    // Agregar el texto al elemento
-    nuevaTarea.textContent = texto;
+    guardarTareas();
+    mostrarTareas();
 
-    // Agregar el elemento a la lista
-    listaTareas.appendChild(nuevaTarea);
-
-    // Limpiar el cuadro de texto
     inputTarea.value = "";
-
-    // Volver a colocar el cursor en el input
     inputTarea.focus();
+}
+
+// Mostrar todas las tareas
+function mostrarTareas() {
+
+    // Limpiar la lista
+    listaTareas.innerHTML = "";
+
+    // Recorrer el arreglo
+    tareas.forEach(function (tarea, indice) {
+
+        // Crear <li>
+        const li = document.createElement("li");
+
+        // ------------------------
+        // Botón completar
+        // ------------------------
+
+        const btnCompletar = document.createElement("button");
+
+        btnCompletar.textContent = tarea.completada ? "☑" : "☐";
+
+        if (tarea.completada) {
+            li.classList.add("completada");
+        }
+
+        btnCompletar.addEventListener("click", function () {
+
+            tareas[indice].completada = !tareas[indice].completada;
+
+            guardarTareas();
+
+            mostrarTareas();
+
+        });
+
+        // ------------------------
+        // Texto
+        // ------------------------
+
+        const span = document.createElement("span");
+
+        // Ejercicio: mostrar número de tarea
+        span.textContent = (indice + 1) + ". " + tarea.texto;
+
+        // ------------------------
+        // Botón eliminar
+        // ------------------------
+
+        const btnEliminar = document.createElement("button");
+
+        btnEliminar.textContent = "🗑";
+
+        btnEliminar.addEventListener("click", function () {
+
+            tareas.splice(indice, 1);
+
+            guardarTareas();
+
+            mostrarTareas();
+
+        });
+
+        // ------------------------
+        // Agregar elementos al <li>
+        // ------------------------
+
+        li.appendChild(btnCompletar);
+        li.appendChild(span);
+        li.appendChild(btnEliminar);
+
+        listaTareas.appendChild(li);
+
+    });
+
+}
+
+// Guardar tareas en localStorage
+function guardarTareas() {
+
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+
+}
+
+// Cargar tareas desde localStorage
+function cargarTareas() {
+
+    const datos = localStorage.getItem("tareas");
+
+    if (datos) {
+
+        tareas = JSON.parse(datos);
+
+        mostrarTareas();
+
+    }
+
+}
+
+// Detectar la tecla Enter
+function detectarEnter(evento) {
+
+    if (evento.key === "Enter") {
+
+        agregarTarea();
+
+    }
+
 }
