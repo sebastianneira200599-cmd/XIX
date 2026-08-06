@@ -1,11 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora GitHub Style</title>
+<style>
+  :root {
+    /* Paleta oficial de GitHub Dark Mode */
+    --bg-body: #0d1117;
+    --bg-calc: #161b22;
+    --border: #30363d;
+    --text-primary: #c9d1d9;
+    --btn-bg: #21262d;
+    --btn-hover: #30363d;
+    --btn-active: #282e33;
+    --btn-primary: #238636;
+    --btn-primary-hover: #2ea043;
+    --btn-danger: #da3633;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+
+  body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .calculator {
+    background-color: var(--bg-calc);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    width: 280px;
+    box-shadow: 0 8px 24px rgba(1, 4, 9, 0.8);
+  }
+
+  .display {
+    background-color: #010409;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    min-height: 29px;
+    word-wrap: break-word;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  button {
+    background-color: var(--btn-bg);
+    color: var(--text-primary);
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    border-radius: 6px;
+    padding: 12px 0;
+    font-size: 16px;
+    font-family: var(--font);
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  }
+
+  button:hover {
+    background-color: var(--btn-hover);
+    border-color: #8b949e;
+  }
+
+  button:active {
+    background-color: var(--btn-active);
+    transform: scale(0.98);
+  }
+
+  .btn-primary {
+    background-color: var(--btn-primary);
+    color: #ffffff;
+    border-color: rgba(240, 246, 252, 0.1);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--btn-primary-hover);
+  }
+
+  .btn-danger {
+    color: #ff7b72;
+  }
+
+  .btn-danger:hover {
+    background-color: var(--btn-danger);
+    color: #ffffff;
+  }
+
+  .span-2 {
+    grid-column: span 2;
+  }
+</style>
 </head>
 <body>
-    
+
+<div class="calculator">
+  <div class="display" id="display">0</div>
+  <div class="buttons">
+    <button class="btn-danger span-2" onclick="clearDisplay()">C</button>
+    <button onclick="deleteLast()">⌫</button>
+    <button onclick="appendOperator('/')">÷</button>
+
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="appendOperator('*')">×</button>
+
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="appendOperator('-')">-</button>
+
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="appendOperator('+')">+</button>
+
+    <button onclick="appendNumber('0')" class="span-2">0</button>
+    <button onclick="appendNumber('.')">.</button>
+    <button class="btn-primary" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  let currentInput = '0';
+  let shouldResetScreen = false;
+  const display = document.getElementById('display');
+
+  function updateDisplay() {
+    display.innerText = currentInput;
+  }
+
+  function appendNumber(number) {
+    if (currentInput === '0' || shouldResetScreen || currentInput === 'Error') {
+      currentInput = number;
+      shouldResetScreen = false;
+    } else {
+      const parts = currentInput.split(/[+\-*/]/);
+      const currentPart = parts[parts.length - 1];
+      if (number === '.' && currentPart.includes('.')) return;
+      currentInput += number;
+    }
+    updateDisplay();
+  }
+
+  function appendOperator(operator) {
+    if (currentInput === 'Error') return;
+    const lastChar = currentInput.slice(-1);
+    if (['+', '-', '*', '/'].includes(lastChar)) {
+      currentInput = currentInput.slice(0, -1) + operator;
+    } else {
+      currentInput += operator;
+    }
+    shouldResetScreen = false;
+    updateDisplay();
+  }
+
+  function deleteLast() {
+    if (currentInput === 'Error') {
+      clearDisplay();
+      return;
+    }
+    if (currentInput.length === 1) {
+      currentInput = '0';
+    } else {
+      currentInput = currentInput.slice(0, -1);
+    }
+    updateDisplay();
+  }
+
+  function clearDisplay() {
+    currentInput = '0';
+    shouldResetScreen = false;
+    updateDisplay();
+  }
+
+  function calculate() {
+    if (currentInput === 'Error') return;
+    try {
+      const result = new Function('return ' + currentInput)();
+      if (!isFinite(result) || isNaN(result)) {
+        currentInput = 'Error';
+      } else {
+        currentInput = String(Math.round(result * 100000000) / 100000000);
+      }
+    } catch (error) {
+      currentInput = 'Error';
+    }
+    shouldResetScreen = true;
+    updateDisplay();
+  }
+</script>
 </body>
 </html>
