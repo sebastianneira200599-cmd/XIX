@@ -81,3 +81,80 @@ header {
 
     font-size: 18px;
 }
+
+/* Barra superior */
+
+.navbar {
+    background-color: #161b22;
+    padding: 15px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #30363d;
+}
+
+/* Logo */
+
+.logo {
+    color: #f0f6fc;
+    text-decoration: none;
+
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Contenedor de botones */
+
+.menu {
+    display: flex;
+    gap: 15px;
+}
+
+/* Botones */
+
+.boton-nav {
+    background-color: #21262d;
+    color: #e6edf3;
+
+    padding: 8px 16px;
+
+    text-decoration: none;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+
+    transition: 0.25s;
+}
+
+/* Hover */
+
+.boton-nav:hover {
+    background-color: #30363d;
+}
+
+/* Página actual */
+
+.boton-nav.activo {
+    background-color: #238636;
+    border-color: #2ea043;
+    color: white;
+
+    box-shadow: 0 0 12px rgba(46,160,67,0.45);
+}
+
+body {
+    margin: 0;
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: "Inter", sans-serif;
+}
+
+.logo {
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: 5px;
+}
