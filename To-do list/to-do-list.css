@@ -1,0 +1,219 @@
+/* -------------------- */
+/* Configuración General */
+/* -------------------- */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: "Inter", sans-serif;
+}
+
+/* -------------------- */
+/* Barra de navegación */
+/* -------------------- */
+
+.navbar{
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+
+    padding: 15px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    text-decoration: none;
+    color: white;
+
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.menu{
+    display: flex;
+    gap: 15px;
+}
+
+.boton-nav{
+    text-decoration: none;
+
+    color: white;
+
+    background-color: #21262d;
+
+    padding: 10px 18px;
+
+    border-radius: 6px;
+
+    transition: .25s;
+}
+
+.boton-nav:hover{
+    background-color: #30363d;
+}
+
+/* -------------------- */
+/* Contenedor Principal */
+/* -------------------- */
+
+.todo-container{
+
+    width: 90%;
+    max-width: 800px;
+
+    margin: 60px auto;
+
+    background-color: #161b22;
+
+    padding: 35px;
+
+    border-radius: 10px;
+
+    border: 1px solid #30363d;
+}
+
+/* -------------------- */
+/* Título */
+/* -------------------- */
+
+h1{
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+    font-size: 38px;
+}
+
+.descripcion{
+
+    text-align: center;
+
+    color: #8b949e;
+
+    margin-bottom: 35px;
+}
+
+/* -------------------- */
+/* Agregar tarea */
+/* -------------------- */
+
+.agregar-tarea{
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+.agregar-tarea input{
+
+    flex: 1;
+
+    padding: 12px;
+
+    background: #0d1117;
+
+    border: 1px solid #30363d;
+
+    color: white;
+
+    border-radius: 6px;
+
+    font-size: 16px;
+}
+
+.agregar-tarea button{
+
+    padding: 12px 22px;
+
+    background: #238636;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.agregar-tarea button:hover{
+
+    background: #2ea043;
+}
+
+/* -------------------- */
+/* Filtros */
+/* -------------------- */
+
+.filtros{
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 35px;
+}
+
+.filtros button{
+
+    background: #21262d;
+
+    color: white;
+
+    border: 1px solid #30363d;
+
+    padding: 10px 18px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.filtros button:hover{
+
+    background: #30363d;
+}
+
+/* -------------------- */
+/* Lista */
+/* -------------------- */
+
+.lista-tareas ul{
+
+    list-style: none;
+}
+
+/* -------------------- */
+/* Estadísticas */
+/* -------------------- */
+
+.estadisticas{
+
+    margin-top: 40px;
+
+    border-top: 1px solid #30363d;
+
+    padding-top: 20px;
+
+    display: flex;
+
+    justify-content: space-around;
+}
