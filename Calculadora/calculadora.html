@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora GitHub Style</title>
+<title>Calculadora - Mi Portafolio</title>
 <style>
   :root {
     /* Paleta oficial de GitHub Dark Mode */
@@ -25,10 +25,76 @@
     color: var(--text-primary);
     font-family: var(--font);
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Cambiado a columna para apilar header y contenido */
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+  }
+
+  /* --- ESTILOS DEL HEADER --- */
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-body);
+  }
+
+  .logo-box {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    background-color: var(--bg-calc);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background-color: var(--btn-bg);
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-btn:hover {
+    background-color: var(--btn-hover);
+    border-color: #8b949e;
+  }
+
+  .nav-btn.active {
+    background-color: var(--btn-primary);
+    color: #ffffff;
+    border-color: rgba(240, 246, 252, 0.1);
+  }
+
+  .nav-btn.active:hover {
+    background-color: var(--btn-primary-hover);
+  }
+
+  /* --- ESTILOS DE LA CALCULADORA --- */
+  .calculator-container {
+    flex-grow: 1; /* Ocupa el resto del espacio disponible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
   .calculator {
@@ -82,13 +148,13 @@
     transform: scale(0.98);
   }
 
-  .btn-primary {
+  .calc-btn-primary {
     background-color: var(--btn-primary);
     color: #ffffff;
     border-color: rgba(240, 246, 252, 0.1);
   }
 
-  .btn-primary:hover {
+  .calc-btn-primary:hover {
     background-color: var(--btn-primary-hover);
   }
 
@@ -108,31 +174,45 @@
 </head>
 <body>
 
-<div class="calculator">
-  <div class="display" id="display">0</div>
-  <div class="buttons">
-    <button class="btn-danger span-2" onclick="clearDisplay()">C</button>
-    <button onclick="deleteLast()">⌫</button>
-    <button onclick="appendOperator('/')">÷</button>
+<!-- HEADER INTEGRADO -->
+<header class="portfolio-header">
+  <div class="logo-box">XIX</div>
+  <nav class="nav-links">
+    <!-- Rutas con ../ para encontrar los archivos en el nivel anterior -->
+    <a href="../index.html" class="nav-btn">Home</a>
+    <a href="../quienes-somos.html" class="nav-btn">Quiénes somos</a>
+    <a href="#" class="nav-btn active">Calculadora</a>
+  </nav>
+</header>
 
-    <button onclick="appendNumber('7')">7</button>
-    <button onclick="appendNumber('8')">8</button>
-    <button onclick="appendNumber('9')">9</button>
-    <button onclick="appendOperator('*')">×</button>
+<!-- CONTENEDOR DE LA CALCULADORA -->
+<div class="calculator-container">
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="btn-danger span-2" onclick="clearDisplay()">C</button>
+      <button onclick="deleteLast()">⌫</button>
+      <button onclick="appendOperator('/')">÷</button>
 
-    <button onclick="appendNumber('4')">4</button>
-    <button onclick="appendNumber('5')">5</button>
-    <button onclick="appendNumber('6')">6</button>
-    <button onclick="appendOperator('-')">-</button>
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button onclick="appendOperator('*')">×</button>
 
-    <button onclick="appendNumber('1')">1</button>
-    <button onclick="appendNumber('2')">2</button>
-    <button onclick="appendNumber('3')">3</button>
-    <button onclick="appendOperator('+')">+</button>
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button onclick="appendOperator('-')">-</button>
 
-    <button onclick="appendNumber('0')" class="span-2">0</button>
-    <button onclick="appendNumber('.')">.</button>
-    <button class="btn-primary" onclick="calculate()">=</button>
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button onclick="appendOperator('+')">+</button>
+
+      <button onclick="appendNumber('0')" class="span-2">0</button>
+      <button onclick="appendNumber('.')">.</button>
+      <button class="calc-btn-primary" onclick="calculate()">=</button>
+    </div>
   </div>
 </div>
 
@@ -204,6 +284,37 @@
     shouldResetScreen = true;
     updateDisplay();
   }
+
+  // --- NUEVO: SOPORTE PARA TECLADO ---
+  document.addEventListener('keydown', (event) => {
+    const key = event.key;
+
+    // Números del 0 al 9
+    if (/[0-9]/.test(key)) {
+      appendNumber(key);
+    } 
+    // Operadores matemáticos
+    else if (['+', '-', '*', '/'].includes(key)) {
+      appendOperator(key);
+    } 
+    // Tecla Enter o Igual para resolver
+    else if (key === 'Enter' || key === '=') {
+      event.preventDefault(); // Evita que "Enter" active el último botón clicado
+      calculate();
+    } 
+    // Tecla de retroceso para borrar el último número
+    else if (key === 'Backspace') {
+      deleteLast();
+    } 
+    // Tecla Escape o letra "C" para limpiar toda la pantalla
+    else if (key === 'Escape' || key.toLowerCase() === 'c') {
+      clearDisplay();
+    } 
+    // Punto o coma para decimales
+    else if (key === '.' || key === ',') {
+      appendNumber('.');
+    }
+  })
 </script>
 </body>
 </html>
