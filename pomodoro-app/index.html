@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="pomodoro-container">
+        <div class="modes">
+            <button id="btn-pomodoro" class="active">Pomodoro</button>
+            <button id="btn-short-break">Descanso Corto</button>
+            <button id="btn-long-break">Descanso Largo</button>
+        </div>
+        
+        <div class="time-display" id="time-display">25:00</div>
+        
+        <div class="controls">
+            <button id="btn-start">Iniciar</button>
+            <button id="btn-pause">Pausar</button>
+            <button id="btn-reset">Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- type="module" es clave aquí -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
