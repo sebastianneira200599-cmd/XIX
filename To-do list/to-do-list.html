@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>To-Do List | XIX</title>
+
+    <link rel="stylesheet" href="to-do-list.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">XIX</a>
+
+            <div class="menu">
+                <a href="index.html" class="boton-nav">Home</a>
+                <a href="quienes-somos.html" class="boton-nav">Quiénes somos</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="todo-container">
+
+            <h1>To-Do List</h1>
+
+            <p class="descripcion">
+                Organiza tus tareas y guarda tu progreso automáticamente.
+            </p>
+
+            <!-- Formulario para agregar tareas -->
+            <section class="agregar-tarea">
+
+                <input
+                    type="text"
+                    id="nuevaTarea"
+                    placeholder="Escribe una tarea..."
+                >
+
+                <button id="btnAgregar">
+                    Añadir
+                </button>
+
+            </section>
+
+            <!-- Filtros -->
+            <section class="filtros">
+
+                <button id="filtroTodas">Todas</button>
+
+                <button id="filtroPendientes">Pendientes</button>
+
+                <button id="filtroCompletadas">Completadas</button>
+
+            </section>
+
+            <!-- Lista de tareas -->
+            <section class="lista-tareas">
+
+                <ul id="listaTareas">
+
+                    <!-- Las tareas se agregarán aquí con JavaScript -->
+
+                </ul>
+
+            </section>
+
+            <!-- Estadísticas -->
+            <section class="estadisticas">
+
+                <p>Total: <span id="totalTareas">0</span></p>
+
+                <p>Pendientes: <span id="tareasPendientes">0</span></p>
+
+                <p>Completadas: <span id="tareasCompletadas">0</span></p>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <script src="to-do-list.js"></script>
+
+</body>
+
+</html>
