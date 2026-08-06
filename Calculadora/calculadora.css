@@ -1,0 +1,165 @@
+:root {
+  /* Paleta oficial de GitHub Dark Mode */
+  --bg-body: #0d1117;
+  --bg-calc: #161b22;
+  --border: #30363d;
+  --text-primary: #c9d1d9;
+  --btn-bg: #21262d;
+  --btn-hover: #30363d;
+  --btn-active: #282e33;
+  --btn-primary: #238636;
+  --btn-primary-hover: #2ea043;
+  --btn-danger: #da3633;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  font-family: var(--font);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* --- ESTILOS DEL HEADER --- */
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 32px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg-body);
+}
+
+.logo-box {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  background-color: var(--bg-calc);
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn {
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--btn-bg);
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  display: flex;
+  align-items: center;
+}
+
+.nav-btn:hover {
+  background-color: var(--btn-hover);
+  border-color: #8b949e;
+}
+
+.nav-btn.active {
+  background-color: var(--btn-primary);
+  color: #ffffff;
+  border-color: rgba(240, 246, 252, 0.1);
+}
+
+.nav-btn.active:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+/* --- ESTILOS DE LA CALCULADORA --- */
+.calculator-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.calculator {
+  background-color: var(--bg-calc);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  width: 280px;
+  box-shadow: 0 8px 24px rgba(1, 4, 9, 0.8);
+}
+
+.display {
+  background-color: #010409;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 24px;
+  text-align: right;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  min-height: 29px;
+  word-wrap: break-word;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+button {
+  background-color: var(--btn-bg);
+  color: var(--text-primary);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 16px;
+  font-family: var(--font);
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+button:hover {
+  background-color: var(--btn-hover);
+  border-color: #8b949e;
+}
+
+button:active {
+  background-color: var(--btn-active);
+  transform: scale(0.98);
+}
+
+.calc-btn-primary {
+  background-color: var(--btn-primary);
+  color: #ffffff;
+  border-color: rgba(240, 246, 252, 0.1);
+}
+
+.calc-btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.btn-danger {
+  color: #ff7b72;
+}
+
+.btn-danger:hover {
+  background-color: var(--btn-danger);
+  color: #ffffff;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
