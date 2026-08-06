@@ -374,3 +374,28 @@ header {
     letter-spacing: 4px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.documentacion{
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+
+    text-align: center;
+
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+}
+
+.documentacion h2{
+
+    color: #f0f6fc;
+    margin-bottom: 20px;
+}
+
+.documentacion p{
+
+    color: #c9d1d9;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
